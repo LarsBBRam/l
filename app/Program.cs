@@ -1,4 +1,5 @@
-﻿using CSnakes.Runtime;
+﻿using System.Threading.Tasks;
+using CSnakes.Runtime;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -22,14 +23,26 @@ class Program
 
         var ollamaModule = pythonEnvironment.OllamaTest();
 
-        string userEntry = Console.ReadLine();
+        // Console.WriteLine(pythonModule.SumTwoNumbers(1, 2));
 
 
-        var response = ollamaModule.Prompt(userEntry);
+        Console.WriteLine("Please write a prompt to talk to deepseek.");
+        string userEntry = "";
 
-        Console.WriteLine(pythonModule.SumTwoNumbers(1, 2));
+        while (userEntry != "exit")
+        {
+            userEntry = Console.ReadLine();
 
-        Console.WriteLine(response);
+            if (userEntry != "exit")
+            {
+
+                var response = ollamaModule.Prompt(userEntry);
+
+                Console.WriteLine(response);
+
+                Console.WriteLine("Please write a new prompt, or exit to quit.");
+            }
+        }
 
 
 
