@@ -8,7 +8,7 @@ print(1+2)
 number = 'hello'
 
 
-def sum_two_numbers(num, num2): 
+def sum_two_numbers(num: int, num2: int) -> int:
     return num + num2
 
 result = sum_two_numbers(1,2)
