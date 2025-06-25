@@ -8,7 +8,7 @@ namespace app;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         var builder = Host.CreateApplicationBuilder(args);
         var pythonHome = Path.Join(Environment.CurrentDirectory, "../PythonFiles");
@@ -36,7 +36,7 @@ class Program
             if (userEntry != "exit")
             {
 
-                var response = ollamaModule.Prompt(userEntry);
+                var response = await ollamaModule.Prompt(userEntry);
 
                 Console.WriteLine(response);
 
