@@ -37,5 +37,27 @@ services:
     depends_on:
       ollama-setup:
         condition: service_healthy
+  postgres:
+    build: .
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=vectordbtest
+    volumes:
+      - ./postgres:/data
+      - ./postgres:/backups
+  pgAdmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    ports:
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgtest@test.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
+    volumes:
+      - ./pgAdmin:/pgAdmin
+      - ./pgAdmin:/backups
 volumes:
   ollama-models:
+  postgres:
+  pgAdmin:
